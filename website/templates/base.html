@@ -1,0 +1,85 @@
+<html>
+<head>  
+   <meta charset="utf-8"> 
+   <meta name="description" content="Music Event App">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+   <link href="static/css/all.css" rel="stylesheet">
+   <title>Music Event App</title>
+</head>
+
+<body>
+   <header class = "text-center">
+      <nav class = "border-bottom navbar bg-light"> <!-- top bar menu-->
+         <div class = "item-bar container-fluid align-items-center">
+
+            <!-- icon menu -->
+            <div class = "col-4">
+               <button class="navbar-toggler" 
+                  type="button" 
+                  data-bs-toggle="collapse" 
+                  data-bs-target="#navbarToggle" 
+                  aria-controls="navbarToggle" 
+                  aria-expanded="false" 
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+               </button>
+            </div>
+            
+            <!-- Logo -->
+            <div class = "LOGO container-fluid col-4">
+               <a class = "navbar-brand" 
+               href ='{{url_for("main.index")}}'>
+               MyMusicTicket</a>
+            </div>
+
+            <!-- account sign up/in buttons -->
+            <form class = "container-fluid justify-content-end col-4">
+               <a href='{{url_for("auth.login")}}' class="btn btn-outline-success me-2" role="button">LOGIN</a>
+               <a href='{{url_for("auth.register")}}' class="btn btn-outline-success me-2" role="button">SIGNUP</a>
+            </form>
+            
+            <div class="collapse navbar-collapse" id="navbarToggle">
+               <ul class = "navbar-nav text-small show">
+                  <!-- navigation menus -->
+                  <li class="nav-item">
+                     <a class="dropdown-item" 
+                        aria-current="page" 
+                        href ='{{url_for("main.index")}}'>Home</a>
+                  </li>     
+                  <li>
+                     <a class="dropdown-item" 
+                        aria-current="page" 
+                        href ='{{url_for("events.create")}}'>
+                        Event Creation</a>
+                  </li>
+                  <li>
+                     <a class="dropdown-item" 
+                        aria-current="page" 
+                        href = "#">
+                        Booking History</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      {% block header %}
+      {% endblock %}
+   </header>
+
+   {% block content %}
+   {% endblock %}
+
+   <!-- Footer of the website -->
+   <footer class = "container">
+      <div class = "text-end">
+          <p>Copyright &copy; 2022</p>
+      </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+      crossorigin="anonymous"></script>
+
+</body>
+</html>

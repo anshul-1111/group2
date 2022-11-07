@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block header %}
+   <div>
+      <div class = "event-title">
+         <div class = "text-block">
+            <h1>Looking for an amazing music experience?</h1>
+         </div>
+      </div>
+   </div>
+
+   <main class="container">
+      <div>
+         <div class = "container search-area">
+            <h3 class = "text-center">Specify your Event?</h3>
+            <form class = "row g-1 needs-validation search-sections" novalidate>
+               <div class = "search-section">
+                  <label>Music Type</label>
+                  <div class="input-group ">
+                     <select class = "form-select form-select-sm" 
+                        id="inputTpeSelect" 
+                        aria-label="Example select with button addon">
+                     <option selected>Choose...</option>
+                     <option value="1">DANCE</option>
+                     <option value="2">JAZZ</option>
+                     <option value="3">POP</option>
+                     <option value="4">REGGAE</option>
+                     <option value="5">ROCK</option>
+                     <option value="6">CLASSIC</option>
+                     <option value="7">OTHER</option>
+                     </select>
+                     <button class="btn btn-outline-secondary" 
+                           type="button">Search</button>
+                  </div>
+               </div>
+
+               <div class = "search-section">
+                  <label>Event Status</label>
+                  <div class="input-group ">
+                     <!-- NEED TO CHANEG!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+                     <select class="form-select form-select-sm" 
+                           id="inputTpeSelect" 
+                           aria-label="Example select with button addon">
+                     <option selected>Choose...</option>
+                     <option value="1">OPEN</option>
+                     <option value="2">UNPUBLISHED</option>
+                     <option value="3">SOLD-OUT</option>
+                     <option value="4">CANCELLED</option>
+                     </select>
+                     <button class="btn btn-outline-secondary" 
+                           type="button">Search</button>
+                  </div>
+               </div>
+               
+               <div class = "search-section">
+                  <label>State</label>
+                  <div class="input-group">
+                     <select class="form-select form-select-sm"
+                           id="inputStateSeclect"> 
+                     <option selected>Choose...</option>
+                     <option value="Queensland">Queensland</option>
+                     <option value="New South Wales">New South Wales</option>
+                     <option value="Tasmania">Tasmania</option>
+                     <option value="Victoria">Victoria</option>
+                     <option value="Western Australia">Western Australia</option>
+                     <option value="South Australia">South Australia</option>
+                     </select>
+                     <button class="btn btn-outline-secondary" 
+                           type="button">Search</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+{% endblock %}
+
+{% block content %}  
+      <div> <!-- upcoming events section -->
+         <div class = "upcoming-title container-fluid">
+            <h3 class = "text-center">Upcoming Events</h3>
+         </div>
+         <div class = "event-list event-list3 container">
+            
+            <!--Create a card for each event-->
+            <div class='row'>
+               {% for event in current_events %}
+               <div class='col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch'>
+               <div class='card mt-4'>
+                  <img src="{{event.image}}" class='card-img-top img-fluid' alt=''>
+                  <div class='card-body d-flex flex-column'>
+                     <h4 class='card-title'><a href='{{url_for("events.show", id=event.id)}}'>{{event.title}}</a></h4>
+                     {% if event.tickets_remaining == 0 %}
+                     <h5 class='card-subtitle mb-2' style="color:red">{{event.event_status.name.title()}}</h5>
+                     <h6 class='card-subtitle mb-2'>{{event.event_genre.name.title()}}</h6>
+                     {% else %}
+                     <h5 class='card-subtitle mb-2' style="color:green">{{event.event_status.name.title()}}</h5>
+                     <h6 class='card-subtitle mb-2'>{{event.event_genre.name.title()}}</h6>
+                     {% endif %}
+                     <p id='index-cards' class='card-text'>{{event.description}}</p>
+                     <a href='{{url_for("events.show", id=event.id)}}' class='mt-auto btn btn-outline-dark'>See more</a>
+                  </div>
+          </div>
+      </div>
+      {% endfor %}
+  </div>
+
+            
+         </div>
+      </div>
+{% endblock %}
+
